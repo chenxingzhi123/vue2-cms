@@ -10,6 +10,7 @@ import "element-ui/lib/theme-chalk/index.css";
 //使用lodash工具库
 import _ from "lodash";
 
+import "./styles/index.scss";
 import "normalize.css/normalize.css";
 
 Vue.prototype._ = _;
