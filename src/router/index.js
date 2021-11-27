@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
+import Layout from "@/layout";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -12,14 +14,18 @@ const routes = [
   },
   {
     path: "/",
-    name: "Home",
+    component: Layout,
     redirect: "/home",
-    component: () => import("@/views/home"),
-  },
-  {
-    path: "/home",
-    name: "Home",
-    component: () => import("@/views/home"),
+    children: [
+      {
+        path: "home",
+        component: () => import("@/views/home"),
+        name: "Home",
+        meta: {
+          title: "首页",
+        },
+      },
+    ],
   },
 ];
 
