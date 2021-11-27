@@ -13,6 +13,12 @@ import _ from "lodash";
 import "./styles/index.scss";
 import "normalize.css/normalize.css";
 
+//全局权限校验
+import "./permission";
+
+//全局Mock接口
+import "./mock";
+
 Vue.prototype._ = _;
 
 Vue.use(ElementUI, {

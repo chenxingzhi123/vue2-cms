@@ -10,6 +10,17 @@ const routes = [
     component: () => import("@/views/login"),
     hidden: true,
   },
+  {
+    path: "/",
+    name: "Home",
+    redirect: "/home",
+    component: () => import("@/views/home"),
+  },
+  {
+    path: "/home",
+    name: "Home",
+    component: () => import("@/views/home"),
+  },
 ];
 
 const router = new VueRouter({
