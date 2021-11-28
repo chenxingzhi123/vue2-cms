@@ -3,9 +3,8 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-//element-ui
-import ElementUI from "element-ui";
-import "element-ui/lib/theme-chalk/index.css";
+//按需引入element-ui
+import ElementUI from "./element";
 
 //使用lodash工具库
 import _ from "lodash";
@@ -21,9 +20,7 @@ import "./mock";
 
 Vue.prototype._ = _;
 
-Vue.use(ElementUI, {
-  size: "medium", //设置element-ui默认尺寸
-});
+Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 
