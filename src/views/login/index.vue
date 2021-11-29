@@ -18,7 +18,6 @@
             <el-form-item prop="username">
               <el-input
                 v-model.trim="loginForm.username"
-                maxlength="20"
                 size=""
                 placeholder="请输入用户名"
                 prefix-icon="el-icon-user"
@@ -27,7 +26,6 @@
             <el-form-item prop="password">
               <el-input
                 v-model.trim="loginForm.password"
-                maxlength="20"
                 size=""
                 placeholder="请输入密码"
                 prefix-icon="el-icon-lock"

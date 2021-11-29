@@ -1,5 +1,5 @@
 <template>
-  <el-aside class="sidebar-wapper">
+  <el-aside class="sidebar-wapper" style="width: 210px">
     <el-scrollbar
       class="sidebar-scrollbar"
       wrapStyle="overflow-x: hidden;"

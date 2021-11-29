@@ -21,6 +21,16 @@ import {
   Message,
 } from "element-ui";
 
+//设置el-input组件默认属性
+const inputRender = Input.render;
+Input.render = function () {
+  // 设置组件默认原生属性（attr）
+  this.$attrs.placeholder || (this.$attrs.placeholder = "请输入");
+  this.$attrs.maxlength || (this.$attrs.maxlength = 50);
+  return inputRender.apply(this, arguments);
+};
+Input.props.clearable.default = true;
+
 const components = [
   Form,
   FormItem,
@@ -53,10 +63,27 @@ const install = function (Vue) {
   };
 
   Vue.prototype.$loading = Loading.service;
+
   Vue.prototype.$msgbox = MessageBox;
+
   Vue.prototype.$alert = MessageBox.alert;
-  Vue.prototype.$confirm = MessageBox.confirm;
+
+  //MessageBox.confirm配置默认属性
+  Vue.prototype.$confirm = (message, title, options) => {
+    let defaultOptions = {
+      closeOnClickModal: false,
+      center: true,
+      confirmButtonText: "确定",
+      cancelButtonText: "取消",
+    };
+    return MessageBox.confirm(message, title, {
+      ...defaultOptions,
+      ...options,
+    });
+  };
+
   Vue.prototype.$prompt = MessageBox.prompt;
+
   Vue.prototype.$message = Message;
 };
 

@@ -32,7 +32,7 @@ export default {
 .app-wrapper {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   min-width: 900px;
   overflow: hidden;
 }

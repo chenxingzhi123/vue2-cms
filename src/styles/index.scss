@@ -6,11 +6,9 @@ body {
   text-rendering: optimizeLegibility;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
     Microsoft YaHei, Arial, sans-serif;
-  height: 100%;
 }
 
 html {
-  height: 100%;
   box-sizing: border-box;
 }
 
@@ -35,8 +33,4 @@ a:hover {
 
 p {
   margin: 0;
-}
-
-#app {
-  height: 100%;
 }
