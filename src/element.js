@@ -19,6 +19,8 @@ import {
   Loading,
   MessageBox,
   Message,
+  Row,
+  Col,
 } from "element-ui";
 
 //设置el-input组件默认属性
@@ -49,6 +51,8 @@ const components = [
   Submenu,
   MenuItem,
   Input,
+  Row,
+  Col,
 ];
 
 const install = function (Vue) {

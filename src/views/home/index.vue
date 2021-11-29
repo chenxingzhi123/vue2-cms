@@ -1,11 +1,16 @@
 <template>
   <div>
-    <el-button @click="test">测试</el-button>
+    <!-- <el-button @click="test">测试</el-button> -->
+    <HomeTotal />
   </div>
 </template>
 
 <script>
+import HomeTotal from "./components/HomeTotal.vue";
+
+import { throttle } from "lodash";
 export default {
+  components: { HomeTotal },
   methods: {
     test() {
       this.$confirm("此操作将永久删除该文件, 是否继续?")
@@ -22,6 +27,10 @@ export default {
           });
         });
     },
+  },
+
+  mounted() {
+    window.onresize = throttle(() => console.log("hehe"), 500);
   },
 };
 </script>
