@@ -1,4 +1,5 @@
-import BaseCharts from "./src/BaseCharts.vue";
-import PlainLineCharts from "./src/PlainLineCharts.vue";
+import Charts from "./src/charts.vue";
+import ChartsLine from "./src/charts-line.vue";
+import ChartsLineColor from "./src/charts-line-color.vue";
 
-export { BaseCharts, PlainLineCharts };
+export { Charts, ChartsLine, ChartsLineColor };

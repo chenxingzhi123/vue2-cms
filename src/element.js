@@ -21,6 +21,7 @@ import {
   Message,
   Row,
   Col,
+  Card,
 } from "element-ui";
 
 //设置el-input组件默认属性
@@ -53,6 +54,7 @@ const components = [
   Input,
   Row,
   Col,
+  Card,
 ];
 
 const install = function (Vue) {

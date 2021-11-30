@@ -1,13 +1,17 @@
 <template>
   <div class="plain-line-charts">
-    <BaseCharts :options="options" width="180px" height="70px" />
+    <Charts :options="options" :width="width" :height="height" />
   </div>
 </template>
 
 <script>
-import BaseCharts from "./BaseCharts.vue";
+import Charts from "./charts.vue";
+
+import { randomHexColor } from "@/utils";
+
 export default {
-  components: { BaseCharts },
+  components: { Charts },
+
   props: {
     optionData: {
       type: Array,
@@ -15,11 +19,18 @@ export default {
         return [50, 75, 60, 90, 80, 40, 90];
       },
     },
-    color: {
+
+    width: {
       type: String,
-      default: "",
+      default: "180px",
+    },
+
+    height: {
+      type: String,
+      default: "70px",
     },
   },
+
   data() {
     return {
       options: {
@@ -41,6 +52,9 @@ export default {
             type: "line",
             symbol: "none",
             smooth: true,
+            lineStyle: {
+              color: randomHexColor(),
+            },
           },
         ],
       },

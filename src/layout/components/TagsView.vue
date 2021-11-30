@@ -81,7 +81,7 @@ export default {
     },
 
     generateRoute() {
-      if (this.$route.name) {
+      if (this.$route.path) {
         return this.$route;
       }
       return false;

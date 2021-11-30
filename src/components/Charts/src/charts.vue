@@ -30,9 +30,11 @@ export default {
   },
   methods: {
     drawLine() {
-      let baseChart = echarts.init(this.$refs.baseChart);
-      baseChart.setOption(this.options); // 绘制图表
-      window.onresize = throttle(() => baseChart.resize(), 500);
+      this.$nextTick(() => {
+        let baseChart = echarts.init(this.$refs.baseChart);
+        baseChart.setOption(this.options); // 绘制图表
+        window.onresize = throttle(() => baseChart.resize(), 500);
+      });
     },
   },
 };

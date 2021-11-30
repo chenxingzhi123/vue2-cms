@@ -36,6 +36,13 @@ export default {
           path: "/test",
           title: "测试",
           icon: "el-icon-menu",
+          children: [
+            {
+              path: "/test/test1",
+              title: "测试1",
+              icon: "el-icon-menu",
+            },
+          ],
         },
         {
           path: "/test1",
