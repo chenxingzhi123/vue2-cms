@@ -40,6 +40,9 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 
+import setting from "@/config/setting";
+const defaultPage = setting.defaultPage;
+
 export default {
   name: "TagsView",
 
@@ -111,7 +114,11 @@ export default {
     },
 
     handleCloseAllClick() {
-      this.delAllViews();
+      this.delAllViews().then(() => {
+        if (this.$route.path !== defaultPage.path) {
+          this.$router.push(defaultPage.path);
+        }
+      });
     },
   },
 };
