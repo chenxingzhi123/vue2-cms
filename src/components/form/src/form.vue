@@ -6,6 +6,7 @@
     v-bind="$listeners"
     :label-position="labelPosition"
     :label-width="labelWidth"
+    size="small"
   >
     <el-row type="flex" :gutter="20" style="flex-flow: wrap">
       <el-col
@@ -14,21 +15,27 @@
         v-bind="item.colLayout ? item.colLayout : colLayout"
       >
         <el-form-item :label="item.label" :prop="item.prop">
-          <component
-            :is="computeName(item.type)"
-            v-bind="computeAttrs(item)"
-            v-model="formData[item.prop]"
-          >
-            <template v-if="item.type === 'select'">
-              <el-option
-                v-for="oitem in item.options"
-                :key="oitem.value"
-                :label="oitem.label"
-                :value="oitem.value"
-              >
-              </el-option>
-            </template>
-          </component>
+          <template v-if="$slots[item.prop + '_label']" slot="label">
+            <slot :name="item.prop + '_label'"></slot>
+          </template>
+
+          <slot :name="item.prop">
+            <component
+              :is="computeName(item.type)"
+              v-bind="computeAttrs(item)"
+              v-model="formData[item.prop]"
+            >
+              <template v-if="item.type === 'select'">
+                <el-option
+                  v-for="oitem in item.options"
+                  :key="oitem.value"
+                  :label="oitem.label"
+                  :value="oitem.value"
+                >
+                </el-option>
+              </template>
+            </component>
+          </slot>
         </el-form-item>
       </el-col>
 

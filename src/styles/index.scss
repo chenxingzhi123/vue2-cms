@@ -38,3 +38,24 @@ p {
 #app{
   height: 100vh;
 }
+
+
+/**修改全局的滚动条*/
+/**滚动条的宽度*/
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  z-index: 1;
+  cursor: pointer;
+}
+//滚动条的滑块
+::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: rgba(144,147,153,.3);
+  transition: .3s background-color;
+
+  &:hover{
+    background-color: rgba(144,147,153,.5);
+  }
+}

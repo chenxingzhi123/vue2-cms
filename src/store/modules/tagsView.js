@@ -10,7 +10,9 @@ const DEL_ALL_TAGSVIEW = "DEL_ALL_TAGSVIEW";
 const tagsview = {
   state: {
     visitedViews: [],
+    cachedViews: [],
   },
+
   mutations: {
     [ADD_TAGSVIEW](state, view) {
       if (state.visitedViews.find((n) => n.path === view.path)) {
@@ -22,6 +24,11 @@ const tagsview = {
         title: view.meta.title ?? "未命名标签",
         default: view.path === defaultPage.path,
       });
+
+      if (view.meta.keepAlive && state.cachedViews.indexOf(view.name) === -1) {
+        state.cachedViews.push(view.name);
+      }
+
       if (state.visitedViews[0].path !== defaultPage.path) {
         state.visitedViews.unshift({
           name: defaultPage.name,
@@ -31,40 +38,43 @@ const tagsview = {
         });
       }
     },
+
     [DEL_TAGSVIEW](state, view) {
-      for (let [i, v] of state.visitedViews.entries()) {
-        if (v.path === view.path && v.path !== defaultPage.path) {
-          state.visitedViews.splice(i, 1);
-          break;
-        }
+      if (view.path === defaultPage.path) {
+        return;
+      }
+      let visitedIndex = state.visitedViews.findIndex(
+        (el) => el.path === view.path
+      );
+      if (visitedIndex !== -1) {
+        state.visitedViews.splice(visitedIndex, 1);
+      }
+      let cachedIndex = state.cachedViews.findIndex((el) => el === view.name);
+      if (cachedIndex !== -1) {
+        state.cachedViews.splice(cachedIndex, 1);
       }
     },
+
     [DEL_OTHER_TAGSVIEW](state, view) {
-      for (let [i, v] of state.visitedViews.entries()) {
-        if (v.path === view.path) {
-          state.visitedViews = state.visitedViews.splice(i, i + 1);
-          //补上首页
-          if (view.path !== defaultPage.path) {
-            state.visitedViews.unshift({
-              name: defaultPage.name,
-              path: defaultPage.path,
-              title: defaultPage.meta.title,
-              default: true,
-            });
-          }
-          break;
-        }
-      }
+      state.visitedViews = state.visitedViews.filter((el) => {
+        return el.path === view.path || el.path === defaultPage.path;
+      });
+
+      state.cachedViews = state.cachedViews.filter((el) => el === view.name);
     },
+
     [DEL_ALL_TAGSVIEW](state) {
       state.visitedViews = state.visitedViews.slice(0, 1);
+      state.cachedViews = [];
     },
   },
+
   actions: {
     //添加一个新的标签页
     addVisitedView({ commit }, view) {
       commit(ADD_TAGSVIEW, view);
     },
+
     //删除一个标签页
     delVisitedView({ commit, state }, view) {
       return new Promise((resolve) => {
@@ -72,12 +82,16 @@ const tagsview = {
         resolve([...state.visitedViews]);
       });
     },
+
+    //删除其他
     delOtherViews({ commit, state }, view) {
       return new Promise((resolve) => {
         commit(DEL_OTHER_TAGSVIEW, view);
         resolve([...state.visitedViews]);
       });
     },
+
+    //删除所有
     delAllViews({ commit, state }, view) {
       return new Promise((resolve) => {
         commit(DEL_ALL_TAGSVIEW, view);
@@ -88,6 +102,7 @@ const tagsview = {
 
   getters: {
     visitedViews: (state) => state.visitedViews,
+    cachedViews: (state) => state.cachedViews,
   },
 };
 

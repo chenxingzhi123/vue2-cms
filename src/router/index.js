@@ -37,6 +37,7 @@ const routes = [
         name: "Test1",
         meta: {
           title: "测试1",
+          keepAlive: true,
         },
       },
     ],

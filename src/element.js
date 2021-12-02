@@ -26,6 +26,9 @@ import {
   Option,
   Switch,
   DatePicker,
+  Table,
+  TableColumn,
+  pagination,
 } from "element-ui";
 
 //设置el-input组件默认属性
@@ -38,8 +41,6 @@ Input.render = function () {
 };
 Input.props.clearable.default = true;
 Input.props.size = { default: "small", type: String };
-
-Form.props.size = { default: "small", type: String };
 
 const components = [
   Form,
@@ -66,6 +67,9 @@ const components = [
   Option,
   Switch,
   DatePicker,
+  Table,
+  TableColumn,
+  pagination,
 ];
 
 const install = function (Vue) {

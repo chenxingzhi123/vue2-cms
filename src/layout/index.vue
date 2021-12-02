@@ -13,10 +13,10 @@
 </template>
 
 <script>
-import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
-import TagsView from "./components/TagsView";
-import AppMain from "./components/AppMain";
+import Navbar from "./components/navbar";
+import Sidebar from "./components/sidebar/sidebar";
+import TagsView from "./components/tags-view";
+import AppMain from "./components/app-main";
 
 export default {
   components: {

@@ -23,7 +23,7 @@
   </el-aside>
 </template>
 <script>
-import SidebarItem from "./SidebarItem.vue";
+import SidebarItem from "./sidebar-item.vue";
 
 export default {
   components: { SidebarItem },

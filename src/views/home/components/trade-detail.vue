@@ -22,7 +22,7 @@ export default {
       homeTotalData: [
         {
           title: "采购额",
-          value: 233233,
+          value: "233233",
         },
         {
           title: "销售额",
