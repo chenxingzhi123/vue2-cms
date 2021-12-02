@@ -66,12 +66,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/variables.scss";
+
 .trade-detail {
-  width: 100%;
   margin-bottom: 20px;
 
   .item {
-    border: 1px solid #ccc;
+    border: 1px solid $border-color-base;
+
     text-align: center;
     padding: 10px;
     height: 160px;

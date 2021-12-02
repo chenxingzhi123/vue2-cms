@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="home-container">
     <TradeDetail />
 
-    <el-row :gutter="20">
+    <el-row :gutter="10">
       <el-col :span="12">
-        <box-card title="销售额" style="height: 300px">
+        <xz-card border title="销售额" style="height: 300px">
           <ChartsLine
             :title="chartsData.title"
             :legendData="chartsData.legendData"
@@ -13,7 +13,7 @@
             style="height: 100%"
             height="100%"
           />
-        </box-card>
+        </xz-card>
       </el-col>
       <el-col :span="8">
         <UserDetail />
@@ -32,10 +32,10 @@ import RankingList from "./components/ranking-list.vue";
 
 import { ChartsLine } from "@/components/charts";
 
-import BoxCard from "@/components/box-card";
+import XzCard from "@/components/card";
 
 export default {
-  components: { TradeDetail, ChartsLine, BoxCard, UserDetail, RankingList },
+  components: { TradeDetail, ChartsLine, XzCard, UserDetail, RankingList },
   data() {
     return {
       chartsData: {
@@ -75,4 +75,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.home-container {
+  width: 100%;
+}
+</style>

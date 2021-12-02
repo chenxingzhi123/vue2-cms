@@ -19,7 +19,7 @@ export function logout(data) {
 }
 
 //获取用户信息
-export function userInfo(data) {
+export function getUserInfo(data) {
   return request({
     url: "/user/userInfo",
     method: "post",

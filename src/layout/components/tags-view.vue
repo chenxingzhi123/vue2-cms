@@ -48,7 +48,7 @@ export default {
 
   data() {
     return {
-      currentTag: {},
+      currentTag: this.$route,
     };
   },
 
@@ -61,8 +61,8 @@ export default {
   },
 
   watch: {
-    $route() {
-      this.currentTag = this.$route;
+    $route(newValue) {
+      this.currentTag = newValue;
       this.addView();
     },
   },

@@ -1,4 +1,4 @@
-import { userInfo, login, logout } from "@/api/login";
+import { getUserInfo, login, logout } from "@/api/login";
 import { getToken, setToken, removeToken } from "@/utils/auth";
 
 const SET_TOKEN = "SET_TOKEN";
@@ -41,7 +41,7 @@ const user = {
 
     getUserInfo({ commit }) {
       return new Promise((resolve, reject) => {
-        userInfo()
+        getUserInfo()
           .then((res) => {
             commit(SET_USERNAME, res.data.username);
             commit(SET_AVATAR, res.data.avatar);

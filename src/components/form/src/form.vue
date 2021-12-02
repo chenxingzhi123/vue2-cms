@@ -14,7 +14,7 @@
         :key="item.prop"
         v-bind="item.colLayout ? item.colLayout : colLayout"
       >
-        <el-form-item :label="item.label" :prop="item.prop">
+        <el-form-item :label="item.label + '：'" :prop="item.prop">
           <template v-if="$slots[item.prop + '_label']" slot="label">
             <slot :name="item.prop + '_label'"></slot>
           </template>

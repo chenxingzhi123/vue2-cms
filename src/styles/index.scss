@@ -35,10 +35,9 @@ p {
   margin: 0;
 }
 
-#app{
+#app {
   height: 100vh;
 }
-
 
 /**修改全局的滚动条*/
 /**滚动条的宽度*/
@@ -52,10 +51,10 @@ p {
 ::-webkit-scrollbar-thumb {
   cursor: pointer;
   border-radius: 4px;
-  background-color: rgba(144,147,153,.3);
-  transition: .3s background-color;
+  background-color: rgba(144, 147, 153, 0.3);
+  transition: 0.3s background-color;
 
-  &:hover{
-    background-color: rgba(144,147,153,.5);
+  &:hover {
+    background-color: rgba(144, 147, 153, 0.5);
   }
 }

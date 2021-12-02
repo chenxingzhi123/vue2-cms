@@ -1,5 +1,5 @@
 <template>
-  <box-card title="灌水嫌疑榜" class="ranking-list">
+  <xz-card border title="灌水嫌疑榜" class="ranking-list">
     <el-scrollbar
       style="height: 100%"
       wrapStyle="overflow-x: hidden;"
@@ -9,13 +9,13 @@
         <div>{{ item.name }}</div>
       </div>
     </el-scrollbar>
-  </box-card>
+  </xz-card>
 </template>
 
 <script>
-import BoxCard from "@/components/box-card";
+import XzCard from "@/components/card";
 export default {
-  components: { BoxCard },
+  components: { XzCard },
   data() {
     return {
       userData: [

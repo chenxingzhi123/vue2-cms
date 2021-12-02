@@ -42,6 +42,21 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/element",
+    component: Layout,
+    children: [
+      {
+        path: "form",
+        component: () => import("@/views/element/form"),
+        name: "ElementForm",
+        meta: {
+          title: "封装表单",
+          keepAlive: true,
+        },
+      },
+    ],
+  },
 ];
 
 const router = new VueRouter({

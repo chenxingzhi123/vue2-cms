@@ -1,5 +1,5 @@
 <template>
-  <el-main>
+  <el-main class="app-main">
     <keep-alive :include="cachedViews">
       <router-view :key="key"></router-view>
     </keep-alive>
@@ -22,4 +22,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "@/styles/variables.scss";
+.app-main {
+  background-color: $background-color-base;
+}
+</style>

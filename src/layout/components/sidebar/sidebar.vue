@@ -26,68 +26,28 @@
 import SidebarItem from "./sidebar-item.vue";
 
 export default {
-  components: { SidebarItem },
   name: "SideBar",
+
+  components: { SidebarItem },
+
   data() {
     return {
       isCollapse: false,
       menuData: [
         {
-          path: "/test",
-          title: "测试",
-          icon: "el-icon-menu",
+          path: "/element",
+          title: "封装Element组件",
+          icon: "el-icon-platform-eleme",
           children: [
             {
-              path: "/test/test1",
-              title: "测试1",
-              icon: "el-icon-menu",
+              path: "/element/form",
+              title: "封装表单",
             },
           ],
-        },
-        {
-          path: "/test1",
-          title: "测试",
-          icon: "el-icon-menu",
-        },
-        {
-          path: "/test2",
-          title: "测试",
-          icon: "el-icon-menu",
-        },
-        {
-          path: "/test3",
-          title: "测试",
-          icon: "el-icon-menu",
-        },
-        {
-          path: "/test4",
-          title: "测试",
-          icon: "el-icon-menu",
-        },
-        {
-          path: "/test6",
-          title: "测试",
-          icon: "el-icon-menu",
-        },
-        {
-          path: "/test7",
-          title: "测试",
-          icon: "el-icon-menu",
-        },
-        {
-          path: "/test8",
-          title: "测试",
-          icon: "el-icon-menu",
-        },
-        {
-          path: "/test9",
-          title: "测试",
-          icon: "el-icon-menu",
         },
       ],
     };
   },
-  methods: {},
 };
 </script>
 

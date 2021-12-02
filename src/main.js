@@ -5,6 +5,7 @@ import store from "./store";
 
 //按需引入element-ui
 import ElementUI from "./element";
+import "./styles/element-variables.scss";
 
 import "./styles/index.scss";
 import "normalize.css/normalize.css";
@@ -15,7 +16,15 @@ import "./permission";
 //全局Mock接口
 import "./mock";
 
+//svg
+import "./icons";
+
+//全局组件
+import globalComponents from "./components";
+
 Vue.use(ElementUI);
+
+Vue.use(globalComponents);
 
 Vue.config.productionTip = false;
 
