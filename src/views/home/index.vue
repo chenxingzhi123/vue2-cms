@@ -5,14 +5,14 @@
     <el-row :gutter="10">
       <el-col :span="12">
         <xz-card border title="销售额" style="height: 300px">
-          <ChartsLine
+          <!-- <ChartsLine
             :title="chartsData.title"
             :legendData="chartsData.legendData"
             :xLabel="chartsData.xLabel"
             :series="chartsData.series"
             style="height: 100%"
             height="100%"
-          />
+          /> -->
         </xz-card>
       </el-col>
       <el-col :span="8">
@@ -30,12 +30,12 @@ import TradeDetail from "./components/trade-detail.vue";
 import UserDetail from "./components/user-detail.vue";
 import RankingList from "./components/ranking-list.vue";
 
-import { ChartsLine } from "@/components/charts";
+// import { ChartsLine } from "@/components/charts";
 
 import XzCard from "@/components/card";
 
 export default {
-  components: { TradeDetail, ChartsLine, XzCard, UserDetail, RankingList },
+  components: { TradeDetail, XzCard, UserDetail, RankingList },
   data() {
     return {
       chartsData: {

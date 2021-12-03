@@ -4,18 +4,18 @@
       <div class="item">
         <p class="item__title">{{ item.title }}</p>
         <p class="item__num" ref="countup">{{ item.value }}</p>
-        <ChartsLineColor />
+        <!-- <ChartsLineColor /> -->
       </div>
     </el-col>
   </el-row>
 </template>
 
 <script>
-import { ChartsLineColor } from "@/components/charts";
+// import { ChartsLineColor } from "@/components/charts";
 import { CountUp } from "countup.js";
 
 export default {
-  components: { ChartsLineColor },
+  // components: { ChartsLineColor },
 
   data() {
     return {

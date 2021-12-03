@@ -1,65 +1,28 @@
 <template>
-  <div class="xz-card" :class="{ border: border }">
-    <div class="xz-card__header">
-      <p class="xz-card__header-title">{{ title }}</p>
+  <el-card class="cz-card" shadow="never">
+    <div slot="header">
+      <span>{{ title }}</span>
     </div>
-
-    <div class="xz-card__body">
-      <slot></slot>
-    </div>
-  </div>
+    <slot></slot>
+  </el-card>
 </template>
 
 <script>
 export default {
+  name: "XzCard",
+
   props: {
     title: {
       type: String,
       default: "",
-    },
-    border: {
-      type: Boolean,
-      default: false,
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/variables.scss";
-
-.xz-card {
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-
-  &__header {
-    padding-top: 14px;
-
-    &-title {
-      color: $color-text-primary;
-      font-size: 14px;
-      line-height: 20px;
-      display: flex;
-      font-weight: bold;
-      &:before {
-        content: "";
-        width: 4px;
-        height: 16px;
-        background: $color-primary;
-        margin-right: 10px;
-      }
-    }
-  }
-
-  &__body {
-    flex: 1;
-    overflow: hidden;
-    padding: 20px;
-  }
-}
-
-.border {
-  border: 1px solid $border-color-base;
+.cz-card {
+  margin-bottom: 20px;
+  width: 100%;
 }
 </style>

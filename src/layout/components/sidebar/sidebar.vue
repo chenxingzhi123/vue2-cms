@@ -37,13 +37,18 @@ export default {
         {
           path: "/element",
           title: "封装Element组件",
-          icon: "el-icon-platform-eleme",
+          icon: "icon-elment",
           children: [
             {
               path: "/element/form",
               title: "封装表单",
             },
           ],
+        },
+        {
+          path: "/charts",
+          title: "图表",
+          icon: "icon-tubiao",
         },
       ],
     };
@@ -56,6 +61,10 @@ export default {
   .sidebar-scrollbar,
   .sidebar-menu {
     height: 100%;
+  }
+
+  ::v-deep .iconfont {
+    margin-right: 5px;
   }
 }
 </style>

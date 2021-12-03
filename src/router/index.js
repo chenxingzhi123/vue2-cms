@@ -25,6 +25,14 @@ const routes = [
           title: "首页",
         },
       },
+      {
+        path: "charts",
+        component: () => import("@/views/charts"),
+        name: "Charts",
+        meta: {
+          title: "图表",
+        },
+      },
     ],
   },
   {

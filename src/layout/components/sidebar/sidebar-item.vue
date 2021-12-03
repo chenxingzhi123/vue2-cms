@@ -3,7 +3,7 @@
     <!-- 该菜单有子菜单时 -->
     <el-submenu v-if="item.children && item.children.length" :index="item.path">
       <template slot="title">
-        <i :class="item.icon"></i>
+        <i :class="`iconfont ${item.icon}`"></i>
         <span slot="title">{{ item.title }}</span>
       </template>
 
@@ -16,7 +16,7 @@
         ></sidebar-item>
 
         <el-menu-item :key="child.path" :index="child.path">
-          <i :class="child.icon"></i>
+          <i :class="`iconfont ${child.icon}`"></i>
           <span slot="title">{{ child.title }}</span>
         </el-menu-item>
       </template>
@@ -24,7 +24,7 @@
 
     <!-- 该菜单无子菜单时 -->
     <el-menu-item v-else :index="item.path">
-      <i :class="item.icon"></i>
+      <i :class="`iconfont ${item.icon}`"></i>
       <span slot="title">{{ item.title }}</span>
     </el-menu-item>
   </div>

@@ -10,6 +10,9 @@ import "./styles/element-variables.scss";
 import "./styles/index.scss";
 import "normalize.css/normalize.css";
 
+//引入iconfont
+import "../public/static/fonts/iconfont.css";
+
 //全局权限校验
 import "./permission";
 
