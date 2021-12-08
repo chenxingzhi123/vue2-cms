@@ -70,16 +70,14 @@ export default {
   },
 
   methods: {
-    ...mapActions(["login"]),
+    ...mapActions(["AccountloginAction"]),
     async submit() {
       try {
         await this.$refs.loginForm.validate();
       } catch (error) {
         return;
       }
-      this.login(this.loginForm).then(() => {
-        this.$router.push("/");
-      });
+      this.AccountloginAction(this.loginForm);
     },
   },
 };

@@ -14,7 +14,7 @@
         router
       >
         <sidebar-item
-          v-for="item in menuData"
+          v-for="item in menus"
           :key="item.path"
           :item="item"
         ></sidebar-item>
@@ -25,32 +25,20 @@
 <script>
 import SidebarItem from "./sidebar-item.vue";
 
+import { mapGetters } from "vuex";
+
 export default {
   name: "SideBar",
 
   components: { SidebarItem },
 
+  computed: {
+    ...mapGetters(["menus"]),
+  },
+
   data() {
     return {
       isCollapse: false,
-      menuData: [
-        {
-          path: "/element",
-          title: "封装Element组件",
-          icon: "icon-elment",
-          children: [
-            {
-              path: "/element/form",
-              title: "封装表单",
-            },
-          ],
-        },
-        {
-          path: "/charts",
-          title: "图表",
-          icon: "icon-tubiao",
-        },
-      ],
     };
   },
 };

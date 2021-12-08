@@ -5,17 +5,21 @@ import Layout from "@/layout";
 
 Vue.use(VueRouter);
 
-const routes = [
+export const constantRouterMap = [
   {
     path: "/login",
     name: "Login",
     component: () => import("@/views/login"),
-    hidden: true,
+  },
+  {
+    path: "/404",
+    component: () => import("@/views/error-page/404"),
   },
   {
     path: "/",
     component: Layout,
     redirect: "/home",
+    name: "Main",
     children: [
       {
         path: "home",
@@ -25,52 +29,15 @@ const routes = [
           title: "首页",
         },
       },
-      {
-        path: "charts",
-        component: () => import("@/views/charts"),
-        name: "Charts",
-        meta: {
-          title: "图表",
-        },
-      },
     ],
   },
-  {
-    path: "/test",
-    component: Layout,
-    children: [
-      {
-        path: "test1",
-        component: () => import("@/views/test/test1"),
-        name: "Test1",
-        meta: {
-          title: "测试1",
-          keepAlive: true,
-        },
-      },
-    ],
-  },
-  {
-    path: "/element",
-    component: Layout,
-    children: [
-      {
-        path: "form",
-        component: () => import("@/views/element/form"),
-        name: "ElementForm",
-        meta: {
-          title: "封装表单",
-          keepAlive: true,
-        },
-      },
-    ],
-  },
+  { path: "*", redirect: "/404", hidden: true },
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes,
+  routes: constantRouterMap,
 });
 
 export default router;

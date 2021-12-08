@@ -31,6 +31,8 @@ Vue.use(globalComponents);
 
 Vue.config.productionTip = false;
 
+store.dispatch("loadLocalCache");
+
 new Vue({
   router,
   store,

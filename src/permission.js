@@ -2,7 +2,7 @@ import router from "@/router";
 import NProgress from "nprogress"; //进度条
 import "nprogress/nprogress.css";
 
-import { getToken } from "@/utils/auth";
+// import { getToken } from "@/utils/auth";
 
 import getPageTitle from "@/utils/get-page-title";
 
@@ -17,7 +17,9 @@ router.beforeEach((to, from, next) => {
 
   document.title = getPageTitle(to.meta.title);
 
-  if (getToken()) {
+  let isLogin = sessionStorage.getItem("token");
+
+  if (isLogin) {
     //有token
     //访问登录页，直接跳转到首页
     if (to.path === "/login") {
