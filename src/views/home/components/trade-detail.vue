@@ -3,19 +3,17 @@
     <el-col :span="6" v-for="(item, index) of homeTotalData" :key="index">
       <div class="item">
         <p class="item__title">{{ item.title }}</p>
-        <p class="item__num" ref="countup">{{ item.value }}</p>
-        <!-- <ChartsLineColor /> -->
+        <countup class="item__num" :number="item.value"></countup>
       </div>
     </el-col>
   </el-row>
 </template>
 
 <script>
-// import { ChartsLineColor } from "@/components/charts";
-import { CountUp } from "countup.js";
+import Countup from "@/components/countup";
 
 export default {
-  // components: { ChartsLineColor },
+  components: { Countup },
 
   data() {
     return {
@@ -40,28 +38,9 @@ export default {
     };
   },
 
-  mounted() {
-    this.initCountUp();
-  },
+  mounted() {},
 
-  methods: {
-    initCountUp() {
-      this.$nextTick(() => {
-        let countupLength = this.$refs.countup.length;
-        for (let i = 0; i < countupLength; i++) {
-          let count = new CountUp(
-            this.$refs.countup[i],
-            this.$refs.countup[i].innerText
-          );
-          if (!count.error) {
-            count.start();
-          } else {
-            console.error(count.error);
-          }
-        }
-      });
-    },
-  },
+  methods: {},
 };
 </script>
 

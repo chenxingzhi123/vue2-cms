@@ -31,6 +31,28 @@ export const constantRouterMap = [
       },
     ],
   },
+  {
+    path: "/component",
+    component: Layout,
+    children: [
+      {
+        path: "form",
+        component: () => import("@/views/component-demo/form"),
+        name: "ComponentForm",
+        meta: {
+          title: "表单",
+        },
+      },
+      {
+        path: "charts",
+        component: () => import("@/views/component-demo/charts"),
+        name: "ComponentCharts",
+        meta: {
+          title: "图表",
+        },
+      },
+    ],
+  },
   { path: "*", redirect: "/404", hidden: true },
 ];
 

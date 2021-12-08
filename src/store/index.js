@@ -12,6 +12,12 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
   return modules;
 }, {});
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   modules,
 });
+
+export function setupStore() {
+  store.dispatch("loadLocalCache");
+}
+
+export default store;

@@ -19,7 +19,7 @@
         </div>
 
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item @click.native="handleLogoutClick">
+          <el-dropdown-item @click.native="logoutAction">
             退出登录
           </el-dropdown-item>
         </el-dropdown-menu>
@@ -43,12 +43,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["logout"]),
-    handleLogoutClick() {
-      this.logout().then(() => {
-        this.$router.go(0);
-      });
-    },
+    ...mapActions(["logoutAction"]),
   },
 };
 </script>

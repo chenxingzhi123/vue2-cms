@@ -18,20 +18,18 @@ function getUserInfo() {
 function getMenu() {
   const menus = [
     {
-      path: "/element",
-      title: "封装Element组件",
-      icon: "icon-elment",
+      path: "/component",
+      title: "组件封装",
       children: [
         {
-          path: "/element/form",
-          title: "封装表单",
+          path: "/component/form",
+          title: "Element表单封装",
+        },
+        {
+          path: "/component/charts",
+          title: "Echarts封装",
         },
       ],
-    },
-    {
-      path: "/charts",
-      title: "图表",
-      icon: "icon-tubiao",
     },
   ];
   let data = menus;

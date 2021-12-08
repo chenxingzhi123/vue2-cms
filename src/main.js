@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store";
+import store, { setupStore } from "./store";
 
 //按需引入element-ui
 import ElementUI from "./element";
@@ -31,7 +31,7 @@ Vue.use(globalComponents);
 
 Vue.config.productionTip = false;
 
-store.dispatch("loadLocalCache");
+setupStore();
 
 new Vue({
   router,
