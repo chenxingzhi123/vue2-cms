@@ -41,6 +41,7 @@ export const constantRouterMap = [
         name: "ComponentForm",
         meta: {
           title: "表单",
+          keepAlive: true,
         },
       },
       {
@@ -49,6 +50,7 @@ export const constantRouterMap = [
         name: "ComponentCharts",
         meta: {
           title: "图表",
+          keepAlive: true,
         },
       },
     ],

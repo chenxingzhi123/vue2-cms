@@ -6,6 +6,8 @@
 import { CountUp } from "countup.js";
 
 export default {
+  name: "Countup",
+
   props: {
     number: {
       type: [Number, String],
@@ -16,14 +18,17 @@ export default {
       default: () => {},
     },
   },
+
   mounted() {
     this.initCountUp();
   },
+
   watch: {
     number() {
       this.initCountUp();
     },
   },
+
   methods: {
     initCountUp() {
       let countUp = new CountUp(this.$refs.countup, this.number, this.options);

@@ -51,6 +51,7 @@ import {
 } from "@/components/charts";
 
 export default {
+  name: "ComponentCharts",
   components: {
     LineEcharts,
     BarEcharts,

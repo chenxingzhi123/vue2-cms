@@ -7,13 +7,12 @@
 </template>
 
 <script>
-import XzCard from "@/components/card";
 import XzForm from "@/components/form";
 
 export default {
-  name: "ElementForm",
+  name: "ComponentForm",
 
-  components: { XzForm, XzCard },
+  components: { XzForm },
 
   data() {
     return {
