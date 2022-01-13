@@ -1,5 +1,6 @@
 <template>
-  <base-echarts :option="option" v-bind="$attrs"></base-echarts>
+  <!-- 散点图 -->
+  <BaseEcharts :option="mergeOption" v-bind="$attrs" />
 </template>
 
 <script>
@@ -11,33 +12,42 @@ export default {
   components: { BaseEcharts },
 
   props: {
-    data: {
-      type: Array,
-      default: () => [],
+    option: {
+      type: Object,
+      default: () => {},
     },
   },
 
-  data() {
-    return {
-      option: {
-        xAxis: {},
-        yAxis: {},
+  computed: {
+    //设置默认属性，合并用户属性
+    mergeOption() {
+      let { xAxis, yAxis, grid, series = [] } = this.option ?? {};
+
+      return {
+        ...this.option,
+
+        xAxis: {
+          ...xAxis,
+        },
+
+        yAxis: {
+          ...yAxis,
+        },
+
         grid: {
           left: "3%",
           right: "4%",
           bottom: "3%",
           top: 20,
           containLabel: true,
+          ...grid,
         },
-        series: [
-          {
-            symbolSize: 20,
-            data: this.data,
-            type: "scatter",
-          },
-        ],
-      },
-    };
+
+        series: series.map((item) => {
+          return { symbolSize: 20, type: "scatter", ...item };
+        }),
+      };
+    },
   },
 };
 </script>

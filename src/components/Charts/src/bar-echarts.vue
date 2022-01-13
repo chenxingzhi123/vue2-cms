@@ -1,6 +1,6 @@
-<!-- 柱状图 -->
 <template>
-  <base-echarts :option="option" v-bind="$attrs"> </base-echarts>
+  <!-- 柱状图 -->
+  <BaseEcharts :option="mergeOption" v-bind="$attrs" />
 </template>
 
 <script>
@@ -12,56 +12,61 @@ export default {
   components: { BaseEcharts },
 
   props: {
-    title: {
-      type: String,
-      default: "",
-    },
-    xLabel: {
-      type: Array,
-      default: () => [],
-    },
-    series: {
-      type: Array,
-      default: () => [],
+    option: {
+      type: Object,
+      default: () => {},
     },
   },
-  data() {
-    return {
-      option: {
-        title: {
-          text: this.title,
-        },
+
+  computed: {
+    //设置默认属性，合并用户属性
+    mergeOption() {
+      let {
+        tooltip,
+        legend,
+        grid,
+        xAxis,
+        yAxis,
+        series = [],
+      } = this.option ?? {};
+
+      return {
+        ...this.option,
 
         tooltip: {
           trigger: "axis",
+          ...tooltip,
         },
 
         legend: {
           left: "right",
+          ...legend,
         },
 
         grid: {
           left: "3%",
           right: "4%",
           bottom: "3%",
-          top: 40,
+          top: 20,
           containLabel: true,
+          ...grid,
         },
 
         xAxis: {
-          data: this.xLabel,
           type: "category",
+          ...xAxis,
         },
 
         yAxis: {
           type: "value",
+          ...yAxis,
         },
 
-        series: this.series.map((item) => {
+        series: series.map((item) => {
           return { type: "bar", ...item };
         }),
-      },
-    };
+      };
+    },
   },
 };
 </script>

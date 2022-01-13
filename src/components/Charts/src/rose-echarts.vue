@@ -1,5 +1,6 @@
 <template>
-  <base-echarts :option="option" v-bind="$attrs"></base-echarts>
+  <!-- 玫瑰图 -->
+  <BaseEcharts :option="mergeOption" v-bind="$attrs" />
 </template>
 
 <script>
@@ -11,17 +12,21 @@ export default {
   components: { BaseEcharts },
 
   props: {
-    data: {
-      type: Array,
-      default: () => [],
+    option: {
+      type: Object,
+      default: () => {},
     },
   },
 
-  data() {
-    return {
-      option: {
-        series: [
-          {
+  computed: {
+    //设置默认属性，合并用户属性
+    mergeOption() {
+      let { series = [] } = this.option ?? {};
+
+      return {
+        ...this.option,
+        series: series.map((item) => {
+          return {
             type: "pie",
             radius: [20, 100],
             center: ["50%", "50%"],
@@ -29,11 +34,11 @@ export default {
             itemStyle: {
               borderRadius: 8,
             },
-            data: this.data,
-          },
-        ],
-      },
-    };
+            ...item,
+          };
+        }),
+      };
+    },
   },
 };
 </script>

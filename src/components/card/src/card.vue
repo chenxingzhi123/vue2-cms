@@ -24,5 +24,11 @@ export default {
 .cz-card {
   margin-bottom: 20px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  ::v-deep .el-card__body {
+    flex: 1;
+  }
 }
 </style>

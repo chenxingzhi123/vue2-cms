@@ -4,7 +4,7 @@
     :model="formData"
     v-on="$attrs"
     v-bind="$listeners"
-    :label-position="labelPosition"
+    :label-position="isDetail ? 'left' : labelPosition"
     :label-width="labelWidth"
     size="small"
   >
@@ -15,11 +15,20 @@
         v-bind="item.colLayout ? item.colLayout : colLayout"
       >
         <el-form-item :label="item.label + '：'" :prop="item.prop">
+          <!-- form表单的label -->
           <template v-if="$slots[item.prop + '_label']" slot="label">
             <slot :name="item.prop + '_label'"></slot>
           </template>
 
-          <slot :name="item.prop">
+          <!-- form表单的content,详情页 -->
+          <xz-tooltip v-if="isDetail" :content="formData[item.prop]">
+            <slot :name="item.prop" :data="value">
+              <span>{{ formData[item.prop] }}</span>
+            </slot>
+          </xz-tooltip>
+
+          <!-- form表单的content -->
+          <slot v-else :name="item.prop">
             <component
               :is="computeName(item.type)"
               v-bind="computeAttrs(item)"
@@ -55,7 +64,11 @@
 </template>
 
 <script>
+import XzTooltip from "@/components/tooltip";
+
 export default {
+  components: { XzTooltip },
+
   props: {
     config: {
       type: Array,
@@ -85,6 +98,11 @@ export default {
         sm: 24, // ≥768px
         xs: 24, // <768px
       }),
+    },
+
+    isDetail: {
+      type: Boolean,
+      default: false,
     },
   },
 
@@ -181,5 +199,25 @@ export default {
   flex: 1;
   display: flex;
   justify-content: flex-end;
+}
+
+.text-overflow {
+  display: flex !important;
+
+  ::v-deep .el-form-item__content {
+    display: flex !important;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    span.content {
+      max-width: 100%;
+      float: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
 }
 </style>

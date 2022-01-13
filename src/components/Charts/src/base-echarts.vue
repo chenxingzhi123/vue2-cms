@@ -27,16 +27,16 @@ export default {
   data() {
     return {
       chart: null,
-      defaultOption: {
-        // color: [
-        //   "rgb(24, 144, 255)",
-        //   "rgb(54, 203, 203)",
-        //   "rgb(78, 203, 115)",
-        //   "rgb(251, 212, 55)",
-        //   "rgb(242, 99, 123)",
-        // ],
-      },
     };
+  },
+
+  watch: {
+    option: {
+      handler(newVal) {
+        this.chart.setOption(newVal);
+      },
+      deep: true,
+    },
   },
 
   mounted() {
@@ -47,29 +47,18 @@ export default {
     this.initCharts();
   },
 
-  watch: {
-    option: {
-      handler(newVal) {
-        if (this.chart) {
-          this.chart.setOption({
-            ...this.defaultOption,
-            ...newVal,
-          });
-        }
-      },
-      deep: true,
-    },
-  },
-
   beforeDestroy() {
     if (!this.chart) {
       return;
     }
+
+    // 防止内存泄漏
     this.chart.dispose();
     this.chart = null;
   },
 
   destroyed() {
+    // 事件解绑
     window.removeEventListener("resize", this.resizeChart);
   },
 
@@ -78,10 +67,7 @@ export default {
       this.$nextTick(() => {
         this.chart = echarts.init(this.$refs["baseEcharts"]);
 
-        this.chart.setOption({
-          ...this.defaultOption,
-          ...this.option,
-        });
+        this.chart.setOption(this.option);
 
         window.addEventListener("resize", this.resizeChart);
       });
@@ -89,3 +75,5 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped></style>
