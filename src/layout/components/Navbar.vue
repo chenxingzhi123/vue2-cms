@@ -5,6 +5,8 @@
     </router-link>
 
     <div class="content">
+      <screenfull class="content__screenfull"></screenfull>
+
       <el-dropdown class="content__dropdown" trigger="click">
         <div class="content__dropdown__avatar">
           <el-avatar
@@ -31,10 +33,14 @@
 <script>
 import setting from "@/config/setting";
 
+import Screenfull from "@/components/screenfull";
+
 import { mapActions } from "vuex";
 
 export default {
   name: "Navbar",
+
+  components: { Screenfull },
 
   data() {
     return {
@@ -67,6 +73,14 @@ export default {
   .content {
     display: flex;
     align-items: center;
+
+    &__screenfull {
+      margin-right: 20px;
+
+      ::v-deep .iconfont {
+        color: #fff;
+      }
+    }
 
     &__dropdown {
       &__avatar {
