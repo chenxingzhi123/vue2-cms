@@ -1,7 +1,7 @@
 <template>
   <el-form
     ref="form"
-    :model="formData"
+    :model="value"
     v-on="$attrs"
     v-bind="$listeners"
     :label-position="isDetail ? 'left' : labelPosition"
@@ -14,16 +14,19 @@
         :key="item.prop"
         v-bind="item.colLayout ? item.colLayout : colLayout"
       >
-        <el-form-item :label="item.label + '：'" :prop="item.prop">
+        <el-form-item
+          :label="item.label ? item.label + '：' : ' '"
+          :prop="item.prop"
+        >
           <!-- form表单的label -->
           <template v-if="$slots[item.prop + '_label']" slot="label">
             <slot :name="item.prop + '_label'"></slot>
           </template>
 
           <!-- form表单的content,详情页 -->
-          <xz-tooltip v-if="isDetail" :content="formData[item.prop]">
+          <xz-tooltip v-if="isDetail" :content="value[item.prop]">
             <slot :name="item.prop" :data="value">
-              <span>{{ formData[item.prop] }}</span>
+              <span>{{ value[item.prop] }}</span>
             </slot>
           </xz-tooltip>
 
@@ -32,7 +35,7 @@
             <component
               :is="computeName(item.type)"
               v-bind="computeAttrs(item)"
-              v-model="formData[item.prop]"
+              v-model="value[item.prop]"
             >
               <template v-if="item.type === 'select'">
                 <el-option
@@ -48,7 +51,10 @@
         </el-form-item>
       </el-col>
 
-      <div class="form-btn">
+      <div
+        class="form-btn el-form-item"
+        :class="[btnPosition === 'center' ? 'center' : 'right']"
+      >
         <el-button
           type="primary"
           v-if="$listeners.search"
@@ -80,7 +86,7 @@ export default {
     },
     labelPosition: {
       type: String,
-      default: "right",
+      default: "top",
       validator: function (value) {
         return ["right", "left", "top"].indexOf(value) !== -1;
       },
@@ -93,9 +99,9 @@ export default {
       type: Object,
       default: () => ({
         xl: 6, // ≥1920px
-        lg: 8, // ≥1200px
-        md: 12, // ≥992px
-        sm: 24, // ≥768px
+        lg: 6, // ≥1200px
+        md: 6, // ≥992px
+        sm: 8, // ≥768px
         xs: 24, // <768px
       }),
     },
@@ -104,21 +110,18 @@ export default {
       type: Boolean,
       default: false,
     },
+
+    btnPosition: {
+      type: String,
+      default: "right",
+      validator: function (value) {
+        return ["right", "center"].indexOf(value) !== -1;
+      },
+    },
   },
 
   data() {
-    return {
-      formData: { ...this.value },
-    };
-  },
-
-  watch: {
-    formData: {
-      handler(newValue) {
-        this.$emit("input", newValue);
-      },
-      deep: true,
-    },
+    return {};
   },
 
   methods: {
@@ -148,7 +151,11 @@ export default {
           name = "ElSwitch";
           break;
         case "date":
+        case "daterange":
           name = "ElDatePicker";
+          break;
+        case "number":
+          name = "ElInputNumber";
           break;
         default:
           name = "ElInput";
@@ -168,7 +175,7 @@ export default {
             "inactive-value": 0,
           };
           break;
-        case "date":
+        case "daterange":
           defaultAttrs = {
             type: "daterange",
             "value-format": "yyyy-MM-dd",
@@ -177,12 +184,22 @@ export default {
             "end-placeholder": "结束日期",
           };
           break;
+        case "date":
+          defaultAttrs = {
+            type: "date",
+            "value-format": "yyyy-MM-dd",
+            placeholder: "请选择日期",
+          };
+          break;
         case "textarea":
           defaultAttrs = {
             maxlength: "200",
             type: "textarea",
             "show-word-limit": true,
           };
+          break;
+        case "number":
+          defaultAttrs = {};
           break;
         default:
           defaultAttrs = {};
@@ -196,9 +213,17 @@ export default {
 
 <style lang="scss" scoped>
 .form-btn {
-  flex: 1;
   display: flex;
-  justify-content: flex-end;
+  align-items: flex-end;
+
+  &.right {
+    flex: 1;
+    justify-content: flex-end;
+  }
+  &.center {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .text-overflow {
@@ -218,6 +243,18 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
     }
+  }
+}
+
+::v-deep .el-form {
+  &-item__content {
+    div {
+      width: 100%;
+    }
+  }
+
+  &-item__label {
+    height: 42px;
   }
 }
 </style>

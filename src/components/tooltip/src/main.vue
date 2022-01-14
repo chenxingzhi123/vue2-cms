@@ -10,7 +10,7 @@
 export default {
   props: {
     content: {
-      type: [String, Number],
+      type: [String, Number, Boolean, Array],
       default: "",
     },
   },

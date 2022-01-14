@@ -28,7 +28,12 @@ import {
   DatePicker,
   Table,
   TableColumn,
-  pagination,
+  Pagination,
+  Tooltip,
+  RadioGroup,
+  Radio,
+  Checkbox,
+  InputNumber,
 } from "element-ui";
 
 //设置el-input组件默认属性
@@ -69,7 +74,12 @@ const components = [
   DatePicker,
   Table,
   TableColumn,
-  pagination,
+  Pagination,
+  Tooltip,
+  RadioGroup,
+  Radio,
+  Checkbox,
+  InputNumber,
 ];
 
 const install = function (Vue) {
